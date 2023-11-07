@@ -21,12 +21,9 @@ def handle_client(client_socket):
     headers = request.split('\r\n')
     method, path, _ = headers[0].split(' ')
 
+    # 改为index.html，替代原来的login.html
     if method == "GET" and path == "/":
-        with open("login.html", "r") as f:
-            response = f"HTTP/1.1 200 OK\nContent-Type: text/html\n\n{f.read()}"
-            client_socket.sendall(response.encode())
-    elif method == "GET" and path == "/main":
-        with open("main.html", "r") as f:
+        with open("index.html", "r") as f:
             response = f"HTTP/1.1 200 OK\nContent-Type: text/html\n\n{f.read()}"
             client_socket.sendall(response.encode())
     elif method == "GET" and path == "/api/tweet":
@@ -114,3 +111,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
